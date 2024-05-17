@@ -9,7 +9,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 public class main_menu_controller {
-    @FXML private ChoiceBox<String> algo_choice_box=new ChoiceBox<String>();
+    private ChoiceBox<String> algo_choice_box=new ChoiceBox<String>();
+    private Button start_button=new Button();
     public void initialize(){
         algo_choice_box.getItems().addAll("Bubble Sort", "Insertion Sort", "Quick Sort");
         algo_choice_box.getSelectionModel().selectFirst(); 

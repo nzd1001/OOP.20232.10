@@ -19,13 +19,13 @@ public class Bar extends Rectangle{
         FillTransition t= new FillTransition();
         t.setShape(this);
         t.setToValue(color);
-        t.setDuration(Duration.millis(1000));
+        t.setDuration(Duration.millis(400));
         return t;
     }
     public TranslateTransition move(int x) {
         TranslateTransition t = new TranslateTransition();
         t.setNode(this);
-        t.setDuration(Duration.millis(1000));
+        t.setDuration(Duration.millis(400));
         t.setByX(x);
         return t;
       }

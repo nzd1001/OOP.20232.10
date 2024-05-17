@@ -8,7 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import apps.algorithms.InsertionSort;
+import apps.algorithms.*;
 import apps.components.Bar;
 import apps.components.BarsCollection;
 import java.util.*;
@@ -21,7 +21,7 @@ public class visualizer_scene_controller {
         Bar[] bars=collection.initialize();
         displaySort.getChildren().addAll(Arrays.asList(bars));
         sort_button.setOnAction(e->{
-          new InsertionSort().sort(bars);
+          new BubbleSort().sort(bars);
         });
     }
 }
