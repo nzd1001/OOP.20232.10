@@ -1,5 +1,5 @@
-package apps.algorithms;
-import apps.components.Bar;
+package main.apps.algorithms;
+import main.apps.components.Bar;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +11,9 @@ import javafx.util.Duration;
 public abstract class Sort {
     final static int d=25;
     final Color INITIAL_COLOR = Color.CYAN;
+    final Color KEY_COLOR = Color.ORANGE;
     final Color SELECT_COLOR = Color.GREENYELLOW;
-    final Color SORTED_COLOR = Color.PURPLE; 
+    final Color SORTED_COLOR = Color.PINK; 
     ParallelTransition reColor(Bar[] bars,Color[] colors){
         ParallelTransition t=new ParallelTransition();
         for (int i=0;i<bars.length;i++){
