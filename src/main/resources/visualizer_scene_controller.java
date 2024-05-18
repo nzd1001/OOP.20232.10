@@ -41,7 +41,6 @@ public class visualizer_scene_controller {
         //FXMLLoader loader1 = new FXMLLoader(getClass().getResource("resources/view/main_menu.fxml")); 
         FXMLLoader loader = new FXMLLoader(fxmlpathUrl); 
         root=loader.load();    
-        System.out.println("Error!");
         stage=(Stage)((Node)event.getSource()).getScene().getWindow();
         scene=new Scene(root);
         stage.setScene(scene);

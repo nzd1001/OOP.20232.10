@@ -15,7 +15,7 @@ public class app extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    URL fxmlpathUrl=getClass().getResource("resources/view/main_menu.fxml");
+    URL fxmlpathUrl=getClass().getResource("resources/view/visualizer_scene.fxml");
     //FXMLLoader loader1 = new FXMLLoader(getClass().getResource("resources/view/main_menu.fxml")); 
     FXMLLoader loader2 = new FXMLLoader(fxmlpathUrl); 
 
