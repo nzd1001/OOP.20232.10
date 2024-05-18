@@ -12,6 +12,7 @@ public abstract class Sort {
     final static int d=25;
     final Color INITIAL_COLOR = Color.CYAN;
     final Color KEY_COLOR = Color.ORANGE;
+    final Color PIVOT_COLOR = Color.LIGHTSLATEGRAY;
     final Color SELECT_COLOR = Color.GREENYELLOW;
     final Color SORTED_COLOR = Color.PINK; 
     ParallelTransition reColor(Bar[] bars,Color[] colors){
