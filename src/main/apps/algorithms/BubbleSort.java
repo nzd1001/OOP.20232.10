@@ -1,8 +1,8 @@
-package apps.algorithms;
+package main.apps.algorithms;
 import java.util.ArrayList;
 import java.util.List;
 
-import apps.components.Bar;
+import main.apps.components.Bar;
 import javafx.animation.SequentialTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.Transition;
@@ -33,6 +33,7 @@ public class BubbleSort extends Sort{
             if (swapped == false)
                 break;
         }
+        t.getChildren().add(reColor(SORTED_COLOR, bars));
         t.play();
     }
 }

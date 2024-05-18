@@ -1,4 +1,4 @@
-package apps.components;
+package main.apps.components;
 
 import javafx.scene.paint.Color;
 public class BarsCollection {
