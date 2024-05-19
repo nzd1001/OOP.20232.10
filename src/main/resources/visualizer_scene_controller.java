@@ -23,34 +23,37 @@ public class visualizer_scene_controller {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private Bar[] bars;
     public void initialize() throws IOException{
-    	
         //int[] data={10,6,57,82,41,35,19};
-    	randomize_button.setOnAction(e->{
-    		Random random = new Random();
-            int[] data=new int[7];
-            for (int i = 0; i < data.length; i++) {
-                
-                data[i] = random.nextInt(50);
-              }
-            BarsCollection collection=new BarsCollection(data);
-            Bar[] bars=collection.initialize();
-            displaySort.getChildren().addAll(Arrays.asList(bars));
-            try{sort_button.setOnAction(ee->{
-                new QuickSort().sort(bars);
-              });}
-              catch(Exception ee){
-              	//switch_scene1(e);
-              	System.out.println("Chua co mang sort con cac");
-              }
-    	});
-    	
+    	randomize_button.setOnAction(e->{this.bars=create_bars();});
+        try{sort_button.setOnAction(ee->{
+            System.out.println(bars.length);
+            new QuickSort().sort(bars);
+          });}
+          catch(Exception ee){
+              //switch_scene1(e);
+              System.out.println("Chua co mang sort con cac");
+          }
         back_button.setOnAction(e->{
             try{
                 switch_scene1(e);}
             catch(IOException err){
                 System.err.println("Error!");
             }});
+    }
+    public Bar[] create_bars(){
+        Random random = new Random();
+        int[] data=new int[7];
+        for (int i = 0; i < data.length; i++) {
+            
+            data[i] = random.nextInt(50)+1;
+          }
+        BarsCollection collection=new BarsCollection(data);
+        Bar[] bars=collection.initialize();
+        displaySort.getChildren().addAll(Arrays.asList(bars));
+        System.out.println(bars[0].getValue());
+        return bars;
     }
     public void switch_scene1(ActionEvent event) throws IOException{
         URL fxmlpathUrl=getClass().getResource("view/main_menu.fxml");

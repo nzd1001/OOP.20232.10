@@ -15,7 +15,7 @@
          <children>
             <Button id="back_button" fx:id="back_button" layoutX="32.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Back" />
             <Button id="sort_button" fx:id="sort_button" layoutX="436.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Sort" />
-            <Button id="randomize_button" layoutX="235.0" layoutY="10.0" mnemonicParsing="false" text="Randomize" />
+            <Button id="randomize_button" fx:id="randomize_button" layoutX="235.0" layoutY="10.0" mnemonicParsing="false" text="Randomize" />
             <MenuButton layoutX="101.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="InsertionSort">
               <items>
                 <MenuItem mnemonicParsing="false" text="Action 1" />
