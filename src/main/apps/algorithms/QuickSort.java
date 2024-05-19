@@ -12,11 +12,14 @@ import javafx.animation.SequentialTransition;
 public class QuickSort extends Sort {
 	SequentialTransition t=new SequentialTransition();
 	public void sort(Bar[] bars, int low, int high) {
-		if(low<high) {
-			int checkk = Transgender(bars, low, high);
-			
-			sort(bars, low, checkk);
-			sort(bars, checkk+1, high);
+		if(low<=high) {
+			if(low==high) {
+				t.getChildren().add(bars[low].changeColor(SORTED_COLOR));
+			}
+			else {
+				int checkk = Transgender(bars, low, high);
+				sort(bars, low, checkk-1);
+				sort(bars, checkk+1, high);}
 		}
 	}
 	public void sort(Bar[] bars) {
@@ -36,13 +39,13 @@ public class QuickSort extends Sort {
 				t.getChildren().add(bars[i-1].changeColor(INITIAL_COLOR));
 			}
 				t.getChildren().add(swap(bars,i,j));
-				t.getChildren().add(bars[j].changeColor(INITIAL_COLOR));
+				t.getChildren().add(bars[i].changeColor(KEY_COLOR));
 			}
 			t.getChildren().add(bars[j].changeColor(INITIAL_COLOR));
 		}
 		t.getChildren().add(swap(bars,pivot,i));
-		t.getChildren().add(bars[i].changeColor(INITIAL_COLOR));
 		t.getChildren().add(bars[pivot].changeColor(INITIAL_COLOR));
+		t.getChildren().add(bars[i].changeColor(SORTED_COLOR));
 		return i;
 	}
 	
