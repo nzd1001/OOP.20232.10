@@ -1,6 +1,5 @@
 package main.resources;
 import javafx.event.ActionEvent;
-import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -27,14 +26,15 @@ public class visualizer_scene_controller {
     public void initialize() throws IOException{
         //int[] data={10,6,57,82,41,35,19};
     	randomize_button.setOnAction(e->{this.bars=create_bars();});
-        try{sort_button.setOnAction(ee->{
-            System.out.println(bars.length);
-            new QuickSort().sort(bars);
-          });}
-          catch(Exception ee){
-              //switch_scene1(e);
-              System.out.println("Chua co mang sort con cac");
-          }
+        sort_button.setOnAction(ee->{
+            if(bars==null||bars.length==0){
+                showInputDataAlert();
+            }
+            else{
+                new QuickSort().sort(bars);
+            }
+            
+        });
         back_button.setOnAction(e->{
             try{
                 switch_scene1(e);}
@@ -51,8 +51,8 @@ public class visualizer_scene_controller {
           }
         BarsCollection collection=new BarsCollection(data);
         Bar[] bars=collection.initialize();
+        displaySort.getChildren().clear();
         displaySort.getChildren().addAll(Arrays.asList(bars));
-        System.out.println(bars[0].getValue());
         return bars;
     }
     public void switch_scene1(ActionEvent event) throws IOException{
@@ -65,4 +65,11 @@ public class visualizer_scene_controller {
         stage.setScene(scene);
         stage.show();
     }
+    public void showInputDataAlert() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Missing Input Data!");
+        alert.setHeaderText("Please Enter Data ");
+        alert.setContentText("You cannot sort without any data. Please enter data or randomize data before sorting.");
+        alert.showAndWait();
+    }   
 }
