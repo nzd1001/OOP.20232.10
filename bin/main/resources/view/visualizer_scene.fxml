@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.resources.visualizer_scene_controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.resources.visualizer_scene_controller">
    <children>
       <AnchorPane id="top_bar" fx:id="top_bar" prefHeight="51.0" prefWidth="600.0" style="-fx-background-color: #9ceb34;">
          <children>
             <Button id="back_button" fx:id="back_button" layoutX="32.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Back" />
             <Button id="sort_button" fx:id="sort_button" layoutX="436.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Sort" />
+            <Button id="randomize_button" fx:id="randomize_button" layoutX="235.0" layoutY="10.0" mnemonicParsing="false" text="Randomize" />
             <MenuButton layoutX="101.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="InsertionSort">
               <items>
                 <MenuItem mnemonicParsing="false" text="Action 1" />
