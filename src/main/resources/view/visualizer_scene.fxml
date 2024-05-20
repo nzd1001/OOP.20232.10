@@ -21,14 +21,16 @@
                 <MenuItem mnemonicParsing="false" text="Action 2" />
               </items>
             </MenuButton>
+            <Button id="randomize_button" fx:id="randomize_button" layoutX="269.0" layoutY="10.0" mnemonicParsing="false" text="Randomize" />
          </children>
       </AnchorPane>
       <Pane fx:id="displaySort" layoutX="35.0" layoutY="75.0" prefHeight="250.0" prefWidth="530.0" />
       <AnchorPane layoutX="-3.0" layoutY="349.0" prefHeight="51.0" prefWidth="607.0">
          <children>
-            <Button id="randomize_button" fx:id="randomize_button" layoutX="491.0" layoutY="10.0" mnemonicParsing="false" text="Randomize" />
-            <TextField id="input_textfield" layoutX="14.0" layoutY="10.0" />
-            <Button id="ok_button" layoutX="227.0" layoutY="10.0" mnemonicParsing="false" text="OK NHA" />
+            <TextField id="input_textfield" fx:id="input_textfield" layoutX="14.0" layoutY="10.0" />
+            <Button id="ok_button" fx:id="ok_button" layoutX="208.0" layoutY="10.0" mnemonicParsing="false" text="OK NHA" />
+            <Slider id="speed_slider" fx:id="speed_slider" layoutX="341.0" layoutY="17.0" />
+            <Label id="speed_label" fx:id="speed_label" layoutX="499.0" layoutY="15.0" prefHeight="21.0" prefWidth="76.0" text="Speed" />
          </children>
       </AnchorPane>
    </children>
