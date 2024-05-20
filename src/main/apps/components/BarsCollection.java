@@ -10,7 +10,8 @@ public class BarsCollection {
         Bar[] bars=new Bar[data.length];
         for (int i = 0; i < bars.length; i++) {
             bars[i] = new Bar(data[i]);
-            bars[i].setScaleY(-1.0);
+            //bars[i].setScaleY(-1.0);
+            bars[i].setY(-5*data[i]);
             bars[i].setX(i*25);
             bars[i].setFill(Color.CYAN);
             bars[i].setStroke(Color.BLACK);
