@@ -13,8 +13,11 @@ import main.apps.components.Bar;
 import main.apps.components.BarsCollection;
 import java.io.IOException;
 import java.net.URL;
+
 import java.util.*;
 public class visualizer_scene_controller {
+	@FXML private Button ok_button = new Button();
+	@FXML private TextField input_textfield = new TextField();
     @FXML private Button sort_button=new Button();
     @FXML private Pane displaySort=new Pane();
     @FXML private Button randomize_button=new Button();
@@ -23,9 +26,12 @@ public class visualizer_scene_controller {
     private Scene scene;
     private Parent root;
     private Bar[] bars;
+    private boolean isValidInput = true;
+    //private int length=1;
+    //private int[] intArray = new int[length];
     public void initialize() throws IOException{
         //int[] data={10,6,57,82,41,35,19};
-    	randomize_button.setOnAction(e->{this.bars=create_bars();});
+    	randomize_button.setOnAction(e->{this.bars=create_random_bars();});
         sort_button.setOnAction(ee->{
             if(bars==null||bars.length==0){
                 showInputDataAlert();
@@ -41,8 +47,48 @@ public class visualizer_scene_controller {
             catch(IOException err){
                 System.err.println("Error!");
             }});
+        ok_button.setOnAction(eee->{
+        	inputTextField();
+        	if(isValidInput) {
+        		
+        		this.bars=create_bars(inputTextField());}
+        	else {
+        		showAlert();
+        	}
+        
+        });
     }
-    public Bar[] create_bars(){
+    public int[] inputTextField() {
+    	String inputText = input_textfield.getText();
+        String[] inputArray = inputText.split(",");
+        //length = inputArray.length;
+        int[] intArray = new int[inputArray.length];
+        //boolean isValidInput = true;
+        for (String element : inputArray) {
+            try {
+                Integer.parseInt(element.trim()); // Trim leading/trailing whitespace
+            	for (int i = 0; i < inputArray.length; i++) {
+                intArray[i] = Integer.parseInt(element);
+                //return intArray;
+            	}
+            } catch (NumberFormatException e) {
+                isValidInput = false;
+                break;
+            }
+        }
+        for (int kkk : intArray) System.out.println(kkk+" ");
+        return intArray;
+    }
+    public Bar[] create_bars(int[] intArray) {
+        	BarsCollection collection=new BarsCollection(intArray);
+            Bar[] bars=collection.initialize();
+            displaySort.getChildren().clear();
+            displaySort.getChildren().addAll(Arrays.asList(bars));
+            return bars;
+        
+    	//return bars;
+    }
+    public Bar[] create_random_bars(){
         Random random = new Random();
         int[] data=new int[7];
         for (int i = 0; i < data.length; i++) {
@@ -72,4 +118,12 @@ public class visualizer_scene_controller {
         alert.setContentText("You cannot sort without any data. Please enter data or randomize data before sorting.");
         alert.showAndWait();
     }   
+    public void showAlert() {
+		Alert alert = new Alert(Alert.AlertType.ERROR);
+		alert.setTitle("Invalid Input");
+		alert.setHeaderText("Please enter only comma-separated numbers.");
+		alert.setContentText("The input you provided contains non-numeric characters.");
+		alert.showAndWait();
+	}
+
 }
