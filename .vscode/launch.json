@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Bird",
+            "request": "launch",
+            "mainClass": "not_important.Bird",
+            "projectName": "OOP.20232.GROUP10"
+        },
+        {
+            "type": "java",
             "name": "zero_error",
             "request": "launch",
             "mainClass": "zero_error",
