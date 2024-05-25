@@ -6,6 +6,13 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 public class Bar extends Rectangle{
     private int value;
+    private static int speed=400;
+    public static int getSpeed() {
+    	return speed;
+    }
+    public static void setSpeed(int s) {
+    	speed=s;
+    }
     public Bar(int value){
         this.value=value;
     }
@@ -19,13 +26,13 @@ public class Bar extends Rectangle{
         FillTransition t= new FillTransition();
         t.setShape(this);
         t.setToValue(color);
-        t.setDuration(Duration.millis(400));
+        t.setDuration(Duration.millis(speed));
         return t;
     }
     public TranslateTransition move(int x) {
         TranslateTransition t = new TranslateTransition();
         t.setNode(this);
-        t.setDuration(Duration.millis(400));
+        t.setDuration(Duration.millis(speed));
         t.setByX(x);
         return t;
       }
