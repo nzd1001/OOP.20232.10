@@ -19,6 +19,7 @@ public class main_menu_controller {
     @FXML private ChoiceBox<String> algo_choice_box=new ChoiceBox<String>();
     @FXML private Button start_button=new Button();
     @FXML private Button quit_button=new Button();
+    @FXML private Button help_button=new Button();
     public void initialize() throws IOException{
         algo_choice_box.getItems().addAll("Bubble Sort", "Insertion Sort", "Quick Sort");
         algo_choice_box.getSelectionModel().selectFirst(); 
@@ -30,6 +31,7 @@ public class main_menu_controller {
                  System.err.println("Error!");
              }});
          quit_button.setOnAction(e->confirmQuit(e));
+         help_button.setOnAction(e->showHelpScene());
     }
      public void switch_scene2(ActionEvent event) throws IOException{
          FXMLLoader loader = new FXMLLoader(getClass().getResource("view/visualizer_scene.fxml")); 
@@ -49,4 +51,10 @@ public class main_menu_controller {
             stage.close();
         }
     }
+    private void showHelpScene() {
+         // Create a new Stage and Scene for Help 
+	     Stage helpStage = new Stage();
+	     helpStage.setTitle("Help");
+	     helpStage.show();
+     }
 }
