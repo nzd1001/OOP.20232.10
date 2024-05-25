@@ -24,8 +24,8 @@ public class visualizer_scene_controller {
     @FXML private Pane displaySort=new Pane();
     @FXML private Button randomize_button=new Button();
     @FXML private Button back_button=new Button();
-    @FXML private Label speed_label=new Label("Speed: 400");
-    @FXML private Slider speed_slider=new Slider(0, 2000, 400);
+    @FXML private Label speed_label=new Label();
+    @FXML private Slider speed_slider=new Slider();
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -34,12 +34,6 @@ public class visualizer_scene_controller {
     //private int length=1;
     //private int[] intArray = new int[length];
     //speed_label.setText("Speed: 400");
-    public void Spid() {
-    	speed_slider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
-        int value = (int) newValue.doubleValue();
-         speed_label.setText("Speed: " + value);}
-      );
-    }
     //speed_label.textProperty().bind(slider.valueProperty().asString("Speed: %.0f");
     public void initialize() throws IOException{
         //int[] data={10,6,57,82,41,35,19};
@@ -67,8 +61,19 @@ public class visualizer_scene_controller {
         	else {
         		showAlert();
         	}
-        
         });
+        speedSliderInitialize();
+    }
+    public void speedSliderInitialize() {
+    	int default_speed=Bar.getSpeed();
+    	speed_slider.setMin(100);
+        speed_slider.setMax(2000);
+        speed_slider.setValue(default_speed);
+        speed_slider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
+        	int current_speed = (int) newValue.doubleValue();
+        	Bar.setSpeed(current_speed);
+            speed_label.setText("Speed: " + current_speed);});
+        speed_label.setText(String.format("Speed:%d",default_speed));
     }
     public int[] inputTextField() {
     	String inputText = input_textfield.getText();
@@ -99,7 +104,6 @@ public class visualizer_scene_controller {
             displaySort.getChildren().clear();
             displaySort.getChildren().addAll(Arrays.asList(bars));
             return bars;
-        
     	//return bars;
     }
     public Bar[] create_random_bars(){
