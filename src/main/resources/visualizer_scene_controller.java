@@ -9,11 +9,9 @@ import javafx.scene.layout.*;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import main.apps.algorithms.*;
-import main.apps.components.Bar;
-import main.apps.components.BarsCollection;
+import main.apps.components.*;
 import java.io.IOException;
 import java.net.URL;
-import javafx.beans.property.DoubleProperty;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import java.util.*;
@@ -26,24 +24,28 @@ public class visualizer_scene_controller {
     @FXML private Button back_button=new Button();
     @FXML private Label speed_label=new Label();
     @FXML private Slider speed_slider=new Slider();
+    @FXML private ChoiceBox<String> algo_box=new ChoiceBox();
     private Stage stage;
     private Scene scene;
     private Parent root;
     private Bar[] bars;
+    private Sort current_sort;
     private boolean isValidInput = true;
+    private String[] algo_list= {"Insertion Sort","Bubble Sort","Quick Sort"};
     //private int length=1;
     //private int[] intArray = new int[length];
     //speed_label.setText("Speed: 400");
     //speed_label.textProperty().bind(slider.valueProperty().asString("Speed: %.0f");
     public void initialize() throws IOException{
         //int[] data={10,6,57,82,41,35,19};
+    	mapSort(algo_list[main_menu_controller.getSortIndex()]);
     	randomize_button.setOnAction(e->{this.bars=create_random_bars();});
         sort_button.setOnAction(ee->{
             if(bars==null||bars.length==0){
                 showInputDataAlert();
             }
             else{
-                new QuickSort().sort(bars);
+                current_sort.sort(bars);
             }
             
         });
@@ -63,6 +65,7 @@ public class visualizer_scene_controller {
         	}
         });
         speedSliderInitialize();
+        choiceBoxInitialize();
     }
     public void speedSliderInitialize() {
     	int default_speed=Bar.getSpeed();
@@ -74,6 +77,19 @@ public class visualizer_scene_controller {
         	Bar.setSpeed(current_speed);
             speed_label.setText("Speed: " + current_speed);});
         speed_label.setText(String.format("Speed:%d",default_speed));
+    }
+    public void choiceBoxInitialize(){	
+    	algo_box.getItems().addAll(algo_list);
+    	algo_box.getSelectionModel().select(algo_list[main_menu_controller.getSortIndex()]);
+    	algo_box.setOnAction(e->{
+    		String current_algo_name=algo_box.getValue();
+    		mapSort(current_algo_name);
+    	});
+    }
+    public void mapSort(String algo_name) {
+    	if (algo_name=="Insertion Sort") {current_sort=new InsertionSort();}
+		else if (algo_name=="Bubble Sort") {current_sort=new BubbleSort();}
+		else {current_sort=new QuickSort();}
     }
     public int[] inputTextField() {
     	String inputText = input_textfield.getText();

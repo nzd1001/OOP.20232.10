@@ -1,5 +1,6 @@
 package main.resources;
 import java.io.IOException;
+import main.apps.algorithms.*;
 
 import javax.swing.Action;
 
@@ -20,10 +21,12 @@ public class main_menu_controller {
     @FXML private Button start_button=new Button();
     @FXML private Button quit_button=new Button();
     @FXML private Button help_button=new Button();
+    private static int selected_sort;
+    public static int getSortIndex() {
+    	return selected_sort;
+    }
     public void initialize() throws IOException{
-        algo_choice_box.getItems().addAll("Bubble Sort", "Insertion Sort", "Quick Sort");
-        algo_choice_box.getSelectionModel().selectFirst(); 
-        algo_choice_box.setStyle("-fx-font-size: 12px;");
+    	selected_sort=0;
          start_button.setOnAction(e->{
              try{
                  switch_scene2(e);}
@@ -32,6 +35,17 @@ public class main_menu_controller {
              }});
          quit_button.setOnAction(e->confirmQuit(e));
          help_button.setOnAction(e->showHelpScene());
+         choiceBoxInitialize();
+    }
+    public void choiceBoxInitialize() {
+    	algo_choice_box.getItems().addAll("Insertion Sort","Bubble Sort","Quick Sort");
+        algo_choice_box.getSelectionModel().selectFirst(); 
+        algo_choice_box.setOnAction(e->{
+        	String current_algo=algo_choice_box.getValue();
+    		if (current_algo=="Insertion Sort") {selected_sort=0;}
+    		else if (current_algo=="Bubble Sort") {selected_sort=1;}
+    		else {selected_sort=2;}
+        });
     }
      public void switch_scene2(ActionEvent event) throws IOException{
          FXMLLoader loader = new FXMLLoader(getClass().getResource("view/visualizer_scene.fxml")); 
