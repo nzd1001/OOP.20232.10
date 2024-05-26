@@ -18,7 +18,7 @@
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <ChoiceBox layoutX="98.0" layoutY="13.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="algo_box" layoutX="98.0" layoutY="13.0" prefWidth="150.0" />
             <Button id="randomize_button" fx:id="randomize_button" layoutX="272.0" layoutY="13.0" mnemonicParsing="false" text="Randomize" />
          </children>
       </AnchorPane>
