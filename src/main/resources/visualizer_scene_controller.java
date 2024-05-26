@@ -24,7 +24,9 @@ public class visualizer_scene_controller {
     @FXML private Button back_button=new Button();
     @FXML private Label speed_label=new Label();
     @FXML private Slider speed_slider=new Slider();
+    @FXML private Button reset_button=new Button();
     @FXML private ChoiceBox<String> algo_box=new ChoiceBox();
+    private int[] data=new int[7];
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -49,6 +51,10 @@ public class visualizer_scene_controller {
             }
             
         });
+        reset_button.setOnAction(epl->{
+        	//int[] dataa=data;
+        	this.bars=create_bars(data);
+        });
         back_button.setOnAction(e->{
             try{
                 switch_scene1(e);}
@@ -56,10 +62,10 @@ public class visualizer_scene_controller {
                 System.err.println("Error!");
             }});
         ok_button.setOnAction(eee->{
-        	int[] inputed = inputTextField();
+        	data = inputTextField();
         	if(isValidInput) {
         		
-        		this.bars=create_bars(inputed);}
+        		this.bars=create_bars(data);}
         	else {
         		showAlert();
         	}
@@ -124,7 +130,7 @@ public class visualizer_scene_controller {
     }
     public Bar[] create_random_bars(){
         Random random = new Random();
-        int[] data=new int[7];
+        //int[] data=new int[7];
         for (int i = 0; i < data.length; i++) {
             
             data[i] = random.nextInt(50)+1;
