@@ -2,7 +2,9 @@ package main.resources;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -20,7 +22,7 @@ public class visualizer_scene_controller {
 	@FXML private Button ok_button = new Button();
 	@FXML private TextField input_textfield = new TextField();
     @FXML private Button sort_button=new Button();
-    @FXML private Pane displaySort=new Pane();
+    @FXML private BorderPane displaySort=new BorderPane();
     @FXML private Button randomize_button=new Button();
     @FXML private Button back_button=new Button();
     @FXML private Label speed_label=new Label();
@@ -95,9 +97,12 @@ public class visualizer_scene_controller {
     }
     public Bar[] create_bars(int[] intArray) {
     	BarsCollection collection=new BarsCollection(intArray);
-        Bar[] bars=collection.initialize();
+        Bar[] bars=collection.initialize(displaySort);
         displaySort.getChildren().clear();
-        displaySort.getChildren().addAll(Arrays.asList(bars));
+        Group barGroup=new Group();
+        barGroup.getChildren().addAll(Arrays.asList(bars));
+        displaySort.setBottom(barGroup);
+        displaySort.setAlignment(barGroup,Pos.CENTER);
         return bars;
     }
     public Bar[] create_random_bars(){
