@@ -9,7 +9,6 @@ import javafx.animation.Transition;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 public abstract class Sort {
-    final static int d=25;
     final Color INITIAL_COLOR = Color.CYAN;
     final Color KEY_COLOR = Color.ORANGE;
     final Color PIVOT_COLOR = Color.LIGHTSLATEGRAY;
@@ -38,8 +37,9 @@ public abstract class Sort {
     }
     ParallelTransition swap(Bar[] bars,int i,int j){
         //swap 2 bars given their indexes
+    	double d=(int)bars[0].getWidth();
         ParallelTransition t=new ParallelTransition();
-        int moveDistance=d*(j-i);
+        double moveDistance=d*(j-i);
         t.getChildren().addAll(bars[i].move(moveDistance),bars[j].move(-moveDistance));
         //This swap one is notable
         Bar temp=bars[i];

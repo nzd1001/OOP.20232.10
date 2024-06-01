@@ -29,7 +29,7 @@ public class Bar extends Rectangle{
         t.setDuration(Duration.millis(speed));
         return t;
     }
-    public TranslateTransition move(int x) {
+    public TranslateTransition move(double x) {
         TranslateTransition t = new TranslateTransition();
         t.setNode(this);
         t.setDuration(Duration.millis(speed));
