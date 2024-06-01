@@ -26,7 +26,7 @@ public class visualizer_scene_controller {
     @FXML private Slider speed_slider=new Slider();
     @FXML private Button reset_button=new Button();
     @FXML private ChoiceBox<String> algo_box=new ChoiceBox();
-    private int[] data=new int[7];
+    private static int[] data=new int[7];
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -64,7 +64,6 @@ public class visualizer_scene_controller {
         ok_button.setOnAction(eee->{
         	data = inputTextField();
         	if(isValidInput) {
-        		
         		this.bars=create_bars(data);}
         	else {
         		showAlert();
@@ -121,30 +120,25 @@ public class visualizer_scene_controller {
         return intArray;
     }
     public Bar[] create_bars(int[] intArray) {
-        	BarsCollection collection=new BarsCollection(intArray);
-            Bar[] bars=collection.initialize();
-            displaySort.getChildren().clear();
-            displaySort.getChildren().addAll(Arrays.asList(bars));
-            return bars;
-    	//return bars;
-    }
-    public Bar[] create_random_bars(){
-        Random random = new Random();
-        //int[] data=new int[7];
-        for (int i = 0; i < data.length; i++) {
-            
-            data[i] = random.nextInt(50)+1;
-          }
-        BarsCollection collection=new BarsCollection(data);
+    	BarsCollection collection=new BarsCollection(intArray);
         Bar[] bars=collection.initialize();
         displaySort.getChildren().clear();
         displaySort.getChildren().addAll(Arrays.asList(bars));
         return bars;
     }
+    public Bar[] create_random_bars(){
+        Random random = new Random();
+        int dodaingaunhien = random.nextInt(18)+3;
+        data=new int[dodaingaunhien];
+        for (int i = 0; i < data.length; i++) {
+            
+            data[i] = random.nextInt(50)+1;
+          }
+       return create_bars(data);
+    }
     public void switch_scene1(ActionEvent event) throws IOException{
-        URL fxmlpathUrl=getClass().getResource("view/main_menu.fxml");
         //FXMLLoader loader1 = new FXMLLoader(getClass().getResource("resources/view/main_menu.fxml")); 
-        FXMLLoader loader = new FXMLLoader(fxmlpathUrl); 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/main_menu.fxml")); 
         root=loader.load();    
         stage=(Stage)((Node)event.getSource()).getScene().getWindow();
         scene=new Scene(root);
