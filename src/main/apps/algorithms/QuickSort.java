@@ -10,23 +10,24 @@ import javafx.util.Duration;
 import javafx.animation.SequentialTransition;
 
 public class QuickSort extends Sort {
-	SequentialTransition t=new SequentialTransition();
-	public void sort(Bar[] bars, int low, int high) {
+	
+	public void sort(Bar[] bars, int low, int high, SequentialTransition t) {
 		if(low<=high) {
 			if(low==high) {
 				t.getChildren().add(bars[low].changeColor(SORTED_COLOR));
 			}
 			else {
-				int checkk = Transgender(bars, low, high);
-				sort(bars, low, checkk-1);
-				sort(bars, checkk+1, high);}
+				int checkk = partition(bars, low, high, t);
+				sort(bars, low, checkk-1, t);
+				sort(bars, checkk+1, high, t);}
 		}
 	}
 	public void sort(Bar[] bars) {
-		sort(bars, 0, bars.length-1);
+		SequentialTransition t=new SequentialTransition();
+		sort(bars, 0, bars.length-1,t);
 		t.play();
 	}
-	public int Transgender(Bar[] bars, int low, int high) {
+	public int partition(Bar[] bars, int low, int high, SequentialTransition t) {
 		int pivot = low;
 		t.getChildren().add(bars[pivot].changeColor(PIVOT_COLOR));
 		int i = low;
