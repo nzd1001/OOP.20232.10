@@ -1,4 +1,4 @@
-package main.apps.components;
+package main.com.components;
 
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;

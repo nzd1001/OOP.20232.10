@@ -1,4 +1,4 @@
-package main.resources;
+package main.com.controllers;
 import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,14 +11,14 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
-import main.apps.algorithms.*;
-import main.apps.components.*;
-import main.apps.handlers.*;
+import main.com.algorithms.*;
+import main.com.components.*;
+import main.com.handlers.*;
 import java.io.IOException;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import java.util.*;
-public class visualizer_scene_controller {
+public class VisualizerSceneController {
 	@FXML private Button ok_button = new Button();
 	@FXML private TextField input_textfield = new TextField();
     @FXML private Button sort_button=new Button();
@@ -39,7 +39,7 @@ public class visualizer_scene_controller {
     private DataHandler input= new DataHandler();
     private String[] algo_list= {"Insertion Sort","Bubble Sort","Quick Sort"};
     public void initialize() throws IOException{
-    	mapSort(algo_list[main_menu_controller.getSortIndex()]);
+    	mapSort(algo_list[MainMenuController.getSortIndex()]);
     	randomize_button.setOnAction(e->{
     		data=input.create_random_data();
     		this.bars=create_bars(data);
@@ -95,7 +95,7 @@ public class visualizer_scene_controller {
     }
     public void choiceBoxInitialize(){	
     	algo_box.getItems().addAll(algo_list);
-    	algo_box.getSelectionModel().select(algo_list[main_menu_controller.getSortIndex()]);
+    	algo_box.getSelectionModel().select(algo_list[MainMenuController.getSortIndex()]);
     	algo_box.setOnAction(e->{
     		String current_algo_name=algo_box.getValue();
     		mapSort(current_algo_name);
@@ -119,7 +119,7 @@ public class visualizer_scene_controller {
     }
     public void switch_scene1(ActionEvent event) throws IOException{
         //FXMLLoader loader1 = new FXMLLoader(getClass().getResource("resources/view/main_menu.fxml")); 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/main_menu.fxml")); 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/view/main_menu.fxml")); 
         root=loader.load();    
         stage=(Stage)((Node)event.getSource()).getScene().getWindow();
         scene=new Scene(root);
