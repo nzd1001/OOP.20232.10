@@ -107,7 +107,7 @@ public class VisualizerSceneController {
 		else {current_sort=new QuickSort();}
     }
     public Bar[] create_bars(int[] intArray) {
-    	BarsCollection collection=new BarsCollection(intArray);
+    	BarsCreator collection=new BarsCreator(intArray);
         Bar[] bars=collection.initialize(displaySort);
         displaySort.getChildren().clear();
         Group barGroup=new Group();

@@ -2,9 +2,9 @@ package main.com.components;
 
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
-public class BarsCollection {
+public class BarsCreator {
     private int[] data=new int[100];
-    public BarsCollection(int[] data){
+    public BarsCreator(int[] data){
         this.data=data;
     }
     public Bar[] initialize(Region container){
