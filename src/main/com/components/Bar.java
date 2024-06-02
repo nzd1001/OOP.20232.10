@@ -1,4 +1,4 @@
-package main.apps.components;
+package main.com.components;
 import javafx.animation.FillTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.shape.Rectangle;

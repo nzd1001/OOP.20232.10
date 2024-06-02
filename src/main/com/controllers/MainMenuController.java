@@ -1,9 +1,5 @@
-package main.resources;
+package main.com.controllers;
 import java.io.IOException;
-import main.apps.algorithms.*;
-
-import javax.swing.Action;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
-public class main_menu_controller {
+public class MainMenuController {
     
     private Stage stage;
     private Scene scene;
@@ -54,7 +50,7 @@ public class main_menu_controller {
         });
     }
      public void switch_scene2(ActionEvent event) throws IOException{
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/visualizer_scene.fxml")); 
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/view/visualizer_scene.fxml")); 
          root=loader.load();
          stage=(Stage)((Node)event.getSource()).getScene().getWindow();
          scene=new Scene(root);
@@ -73,7 +69,7 @@ public class main_menu_controller {
     }
     private void showHelpScene() throws IOException{
          // Create a new Stage and Scene for Help 
-    	 FXMLLoader loader = new FXMLLoader(getClass().getResource("view/help_scene.fxml")); 
+    	 FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/view/help_scene.fxml")); 
 	     Stage helpStage = new Stage();
 	     Scene helpScene=new Scene(loader.load());
 	     helpStage.setScene(helpScene);

@@ -1,7 +1,6 @@
-package main.apps.algorithms;
+package main.com.algorithms;
 import java.util.List;
-
-import main.apps.components.Bar;
+import main.com.components.Bar;
 import javafx.animation.SequentialTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.Transition;

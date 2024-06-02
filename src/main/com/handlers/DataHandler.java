@@ -1,4 +1,4 @@
-package main.apps.handlers;
+package main.com.handlers;
 
 import java.util.Random;
 
