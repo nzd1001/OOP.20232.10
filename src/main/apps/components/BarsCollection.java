@@ -9,12 +9,11 @@ public class BarsCollection {
     }
     public Bar[] initialize(Region container){
     	int l=data.length;
-    	double unit_w=Math.min(22, (container.getWidth()/l));
+    	double unit_w=Math.min(22, (int)(container.getWidth()/l));
     	double unit_h=((container.getHeight()-40)/50);
         Bar[] bars=new Bar[l];
         for (int i = 0; i < bars.length; i++) {
             bars[i] = new Bar(data[i]);
-            //bars[i].setScaleY(-1.0);
             bars[i].setY(-unit_h*data[i]);
             bars[i].setX(i*unit_w);
             bars[i].setFill(Color.CYAN);

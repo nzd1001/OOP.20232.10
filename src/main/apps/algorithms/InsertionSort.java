@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 public class InsertionSort extends Sort{
     @Override
-    public void sort(Bar[] bars){
+    public SequentialTransition sort(Bar[] bars){
       SequentialTransition t=new SequentialTransition();
       for (int i = 1; i < bars.length; i++) {
         int keyVal = bars[i].getValue();
@@ -25,6 +25,6 @@ public class InsertionSort extends Sort{
         t.getChildren().add(bars[j+1].changeColor(INITIAL_COLOR));
         }
       t.getChildren().add(reColor(SORTED_COLOR, bars));
-      t.play();
+      return t;
     }
 }

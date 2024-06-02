@@ -1,4 +1,5 @@
 package main.resources;
+import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,6 @@ import main.apps.algorithms.*;
 import main.apps.components.*;
 import main.apps.handlers.*;
 import java.io.IOException;
-import java.net.URL;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import java.util.*;
@@ -29,29 +29,36 @@ public class visualizer_scene_controller {
     @FXML private Slider speed_slider=new Slider();
     @FXML private Button reset_button=new Button();
     @FXML private ChoiceBox<String> algo_box=new ChoiceBox();
-    private static int[] data=new int[7];
+    private boolean isSorting=false;
+    private static int[] data;
     private Stage stage;
     private Scene scene;
     private Parent root;
     private Bar[] bars;
     private Sort current_sort;
-    private InputHandler input= new InputHandler();
+    private DataHandler input= new DataHandler();
     private String[] algo_list= {"Insertion Sort","Bubble Sort","Quick Sort"};
     public void initialize() throws IOException{
     	mapSort(algo_list[main_menu_controller.getSortIndex()]);
-    	randomize_button.setOnAction(e->{this.bars=create_random_bars();});
-        sort_button.setOnAction(ee->{
+    	randomize_button.setOnAction(e->{
+    		data=input.create_random_data();
+    		this.bars=create_bars(data);
+    	});
+        sort_button.setOnAction(e->{
             if(bars==null||bars.length==0){
-                input.showMissingInputDataAlert();
+                input.showMissingDataAlert();
             }
             else{
-                current_sort.sort(bars);
+            	resetBars();
+            	SequentialTransition sortingAnimation=current_sort.sort(bars);
+            	sortingAnimation.play();
+            	/*sort_button.setDisable(true);
+            	sortingAnimation.setOnFinished(ee-> {
+	        		 sort_button.setDisable(false);  // Re-enable button after sorting finishes
+	        	});*/
             }
-            
         });
-        reset_button.setOnAction(epl->{
-        	this.bars=create_bars(data);
-        });
+        reset_button.setOnAction(e->resetBars());
         back_button.setOnAction(e->{
             try{
                 switch_scene1(e);}
@@ -60,7 +67,7 @@ public class visualizer_scene_controller {
             }});
         ok_button.setOnAction(eee->{
         	String inputText = input_textfield.getText();
-        	data = input.inputArray(inputText);
+        	data = input.inputData(inputText);
         	boolean isValidInput=input.getValid();
         	if(isValidInput) {
         		this.bars=create_bars(data);}
@@ -70,6 +77,10 @@ public class visualizer_scene_controller {
         });
         speedSliderInitialize();
         choiceBoxInitialize();
+    }
+    public void resetBars() {
+		if (!(data==null||data.length==0)) {
+			this.bars=create_bars(data);}
     }
     public void speedSliderInitialize() {
     	int default_speed=Bar.getSpeed();
@@ -101,18 +112,11 @@ public class visualizer_scene_controller {
         displaySort.getChildren().clear();
         Group barGroup=new Group();
         barGroup.getChildren().addAll(Arrays.asList(bars));
+        /*displaySort.getChildren().add(barGroup);*/
         displaySort.setBottom(barGroup);
-        displaySort.setAlignment(barGroup,Pos.CENTER);
+        Pos center=Pos.CENTER;
+        displaySort.setAlignment(barGroup,center);
         return bars;
-    }
-    public Bar[] create_random_bars(){
-        Random random = new Random();
-        int l = random.nextInt(28)+3;
-        data=new int[l];
-        for (int i = 0; i < data.length; i++) {
-            data[i] = random.nextInt(50)+1;
-          }
-       return create_bars(data);
     }
     public void switch_scene1(ActionEvent event) throws IOException{
         //FXMLLoader loader1 = new FXMLLoader(getClass().getResource("resources/view/main_menu.fxml")); 

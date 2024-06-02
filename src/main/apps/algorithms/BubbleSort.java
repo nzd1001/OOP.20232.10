@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 public class BubbleSort extends Sort{
     @Override
-    public void sort(Bar[] bars){
+    public SequentialTransition sort(Bar[] bars){
         SequentialTransition t=new SequentialTransition();
         int i, j;
         int n=bars.length;
@@ -34,6 +34,6 @@ public class BubbleSort extends Sort{
                 break;
         }
         t.getChildren().add(reColor(SORTED_COLOR, bars));
-        t.play();
+        return t;
     }
 }
