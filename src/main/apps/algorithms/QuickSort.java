@@ -22,10 +22,10 @@ public class QuickSort extends Sort {
 				sort(bars, checkk+1, high, t);}
 		}
 	}
-	public void sort(Bar[] bars) {
+	public SequentialTransition sort(Bar[] bars) {
 		SequentialTransition t=new SequentialTransition();
 		sort(bars, 0, bars.length-1,t);
-		t.play();
+		return t;
 	}
 	public int partition(Bar[] bars, int low, int high, SequentialTransition t) {
 		int pivot = low;
