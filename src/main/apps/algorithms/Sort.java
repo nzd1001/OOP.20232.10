@@ -33,7 +33,7 @@ public abstract class Sort {
     }
     ParallelTransition swap(Bar[] bars,int i,int j){
         //swap 2 bars given their indexes
-    	double d=(int)bars[0].getWidth();
+    	double d=bars[0].getWidth();
         ParallelTransition t=new ParallelTransition();
         double moveDistance=d*(j-i);
         t.getChildren().addAll(bars[i].move(moveDistance),bars[j].move(-moveDistance));

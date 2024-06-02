@@ -1,17 +1,16 @@
 package main.apps.handlers;
 
+import java.util.Random;
+
 import javafx.scene.control.Alert;
 
-public class InputHandler {
+public class DataHandler {
 	private boolean valid;
 	private String[] errorContent=new String[2];
 	public boolean getValid() {
 		return valid;
 	}
-	public String[] getErrorContent() {
-		return errorContent;
-	}
-	public int[] inputArray(String inputText) {
+	public int[] inputData(String inputText) {
 		valid=true;
 		//System.out.println(inputText);
 	    String[] inputArray = inputText.split(",");
@@ -57,13 +56,23 @@ public class InputHandler {
 			errorContent[1]="Your array has too many numbers";
 		}
 	}
-	public void showMissingInputDataAlert() {
+	public int[] create_random_data(){
+        Random random = new Random();
+        int l = random.nextInt(28)+3;
+        int[] data=new int[l];
+        for (int i = 0; i < l; i++) {
+            data[i] = random.nextInt(50)+1;
+          }
+       return data;
+    }
+	public void showMissingDataAlert() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Missing Input Data!");
         alert.setHeaderText("Please Enter Data ");
         alert.setContentText("You cannot sort without any data. Please enter data or randomize data before sorting.");
         alert.showAndWait();
     }   
+	 
     public void showInvalidInputDataAlert() {
 		Alert alert = new Alert(Alert.AlertType.ERROR);
 		alert.setTitle("Invalid Input");

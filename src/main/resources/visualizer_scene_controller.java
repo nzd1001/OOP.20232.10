@@ -36,14 +36,17 @@ public class visualizer_scene_controller {
     private Parent root;
     private Bar[] bars;
     private Sort current_sort;
-    private InputHandler input= new InputHandler();
+    private DataHandler input= new DataHandler();
     private String[] algo_list= {"Insertion Sort","Bubble Sort","Quick Sort"};
     public void initialize() throws IOException{
     	mapSort(algo_list[main_menu_controller.getSortIndex()]);
-    	randomize_button.setOnAction(e->{this.bars=create_bars(create_random_data());});
+    	randomize_button.setOnAction(e->{
+    		data=input.create_random_data();
+    		this.bars=create_bars(data);
+    	});
         sort_button.setOnAction(e->{
             if(bars==null||bars.length==0){
-                input.showMissingInputDataAlert();
+                input.showMissingDataAlert();
             }
             else{
             	resetBars();
@@ -64,7 +67,7 @@ public class visualizer_scene_controller {
             }});
         ok_button.setOnAction(eee->{
         	String inputText = input_textfield.getText();
-        	data = input.inputArray(inputText);
+        	data = input.inputData(inputText);
         	boolean isValidInput=input.getValid();
         	if(isValidInput) {
         		this.bars=create_bars(data);}
@@ -109,18 +112,11 @@ public class visualizer_scene_controller {
         displaySort.getChildren().clear();
         Group barGroup=new Group();
         barGroup.getChildren().addAll(Arrays.asList(bars));
+        /*displaySort.getChildren().add(barGroup);*/
         displaySort.setBottom(barGroup);
-        displaySort.setAlignment(barGroup,Pos.CENTER);
+        Pos center=Pos.CENTER;
+        displaySort.setAlignment(barGroup,center);
         return bars;
-    }
-    public int[] create_random_data(){
-        Random random = new Random();
-        int l = random.nextInt(28)+3;
-        data=new int[l];
-        for (int i = 0; i < l; i++) {
-            data[i] = random.nextInt(50)+1;
-          }
-       return data;
     }
     public void switch_scene1(ActionEvent event) throws IOException{
         //FXMLLoader loader1 = new FXMLLoader(getClass().getResource("resources/view/main_menu.fxml")); 
