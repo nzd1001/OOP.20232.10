@@ -114,8 +114,7 @@ public class visualizer_scene_controller {
         barGroup.getChildren().addAll(Arrays.asList(bars));
         /*displaySort.getChildren().add(barGroup);*/
         displaySort.setBottom(barGroup);
-        Pos center=Pos.CENTER;
-        displaySort.setAlignment(barGroup,center);
+        displaySort.setAlignment(barGroup,Pos.CENTER);
         return bars;
     }
     public void switch_scene1(ActionEvent event) throws IOException{

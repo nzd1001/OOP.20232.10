@@ -34,7 +34,13 @@ public class main_menu_controller {
                  System.err.println("Error!");
              }});
          quit_button.setOnAction(e->confirmQuit(e));
-         help_button.setOnAction(e->showHelpScene());
+         help_button.setOnAction(e->{
+        	 try{
+        		 showHelpScene();}
+             catch(IOException err){
+                 System.err.println("Error!");
+             }
+         });
          choiceBoxInitialize();
     }
     public void choiceBoxInitialize() {
@@ -65,9 +71,12 @@ public class main_menu_controller {
             stage.close();
         }
     }
-    private void showHelpScene() {
+    private void showHelpScene() throws IOException{
          // Create a new Stage and Scene for Help 
+    	 FXMLLoader loader = new FXMLLoader(getClass().getResource("view/help_scene.fxml")); 
 	     Stage helpStage = new Stage();
+	     Scene helpScene=new Scene(loader.load());
+	     helpStage.setScene(helpScene);
 	     helpStage.setTitle("Help");
 	     helpStage.show();
      }
