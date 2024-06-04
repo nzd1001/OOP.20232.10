@@ -26,7 +26,7 @@ public class BubbleSort extends Sort{
                 }
                 t.getChildren().add(this.reColor(INITIAL_COLOR,bars[j],bars[j+1]));
             }
-
+            t.getChildren().add(bars[j].changeColor(SORTED_COLOR));
             // If no two elements were
             // swapped by inner loop, then break
             if (swapped == false)

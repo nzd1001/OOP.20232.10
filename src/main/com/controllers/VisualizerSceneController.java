@@ -86,14 +86,14 @@ public class VisualizerSceneController {
     public void speedSliderInitialize() {
     	float default_speed=2; //Bar.getSpeed();
     	speed_slider.setMin(0.5);
-        speed_slider.setMax(20.0);
+        speed_slider.setMax(30.0);
         speed_slider.setValue(default_speed);
         speed_slider.setBlockIncrement(0.5);
         speed_slider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
         	double current_speed = newValue.doubleValue();
         	//Bar.setSpeed(current_speed);
             speed_label.setText(String.format("Speed: %.1f", current_speed));});
-        speed_label.setText(String.format("Speed:%.1f",default_speed));
+        speed_label.setText(String.format("Speed: %.1f",default_speed));
     }
     public void choiceBoxInitialize(){	
     	algo_box.getItems().addAll(algo_list);
