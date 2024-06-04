@@ -35,7 +35,7 @@ public class DataHandler {
 	            return null;
 	        }
 	    }    
-	    if (inputArray.length>30) {
+	    if (inputArray.length>40) {
 	    	valid=false;
 	    	matchError("Overlong");
 	    	return null;
@@ -52,13 +52,13 @@ public class DataHandler {
 			errorContent[1]="Your input value is not valid";
 		}
 		else if (er.equals("Overlong")){
-			errorContent[0]="Please enter an array that has length no exceeding 30";
+			errorContent[0]="Please enter an array that has length no exceeding 40";
 			errorContent[1]="Your array has too many numbers";
 		}
 	}
 	public int[] create_random_data(){
         Random random = new Random();
-        int l = random.nextInt(28)+3;
+        int l = random.nextInt(38)+3;
         int[] data=new int[l];
         for (int i = 0; i < l; i++) {
             data[i] = random.nextInt(50)+1;

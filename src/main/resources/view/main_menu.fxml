@@ -36,32 +36,32 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.com.controllers.MainMenuController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-        <Label alignment="CENTER" layoutX="128.0" layoutY="193.0" style="&#10;" text="Choose your algorithm: " textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
-          <font>
-            <Font size="18.0" />
-          </font>
-        </Label>
-            <ChoiceBox id="algo_choice_box" fx:id="algo_choice_box" layoutX="356.0" layoutY="194.0" prefWidth="150.0" />
-            <Button id="start-button" fx:id="start_button" layoutX="283.0" layoutY="249.0" mnemonicParsing="false" text="Start">
+<BorderPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.com.controllers.MainMenuController">
+   <center>
+      <AnchorPane maxHeight="340.0" maxWidth="500.0" prefHeight="340.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="84.0" layoutY="156.0" style="&#10;" text="Choose your algorithm: " textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ChoiceBox id="algo_choice_box" fx:id="algo_choice_box" layoutX="284.0" layoutY="157.0" prefWidth="150.0" />
+            <Button id="start-button" fx:id="start_button" layoutX="219.0" layoutY="198.0" mnemonicParsing="false" text="Start">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button id="help-button" fx:id="help_button" layoutX="276.0" layoutY="308.0" mnemonicParsing="false" text="Help" />
-            <Button id="quit-button" fx:id="quit_button" layoutX="320.0" layoutY="308.0" mnemonicParsing="false" text="Quit" />
-            <Label fx:id="title" layoutX="155.0" layoutY="94.0" text="Sorting Algo Visualizer">
+            <Button id="help-button" fx:id="help_button" layoutX="209.0" layoutY="254.0" mnemonicParsing="false" text="Help" />
+            <Button id="quit-button" fx:id="quit_button" layoutX="255.0" layoutY="254.0" mnemonicParsing="false" text="Quit" />
+            <Label fx:id="title" layoutX="92.0" layoutY="62.0" text="Sorting Algo Visualizer">
                <font>
                   <Font name="Comic Sans MS" size="30.0" />
                </font>
             </Label>
-      </children>
-    </AnchorPane>
-  </children>
-</VBox>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
