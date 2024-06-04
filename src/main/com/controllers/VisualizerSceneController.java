@@ -51,6 +51,7 @@ public class VisualizerSceneController {
             else{
             	resetBars();
             	SequentialTransition sortingAnimation=current_sort.sort(bars);
+            	sortingAnimation.rateProperty().bind(speed_slider.valueProperty());
             	sortingAnimation.play();
             	/*sort_button.setDisable(true);
             	sortingAnimation.setOnFinished(ee-> {
@@ -83,15 +84,16 @@ public class VisualizerSceneController {
 			this.bars=create_bars(data);}
     }
     public void speedSliderInitialize() {
-    	int default_speed=Bar.getSpeed();
-    	speed_slider.setMin(100);
-        speed_slider.setMax(2000);
+    	float default_speed=2; //Bar.getSpeed();
+    	speed_slider.setMin(0.5);
+        speed_slider.setMax(20.0);
         speed_slider.setValue(default_speed);
+        speed_slider.setBlockIncrement(0.5);
         speed_slider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
-        	int current_speed = (int) newValue.doubleValue();
-        	Bar.setSpeed(current_speed);
-            speed_label.setText("Speed: " + current_speed);});
-        speed_label.setText(String.format("Speed:%d",default_speed));
+        	double current_speed = newValue.doubleValue();
+        	//Bar.setSpeed(current_speed);
+            speed_label.setText(String.format("Speed: %.1f", current_speed));});
+        speed_label.setText(String.format("Speed:%.1f",default_speed));
     }
     public void choiceBoxInitialize(){	
     	algo_box.getItems().addAll(algo_list);
