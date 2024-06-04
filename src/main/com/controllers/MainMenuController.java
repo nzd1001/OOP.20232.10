@@ -73,6 +73,7 @@ public class MainMenuController {
 	     Stage helpStage = new Stage();
 	     Scene helpScene=new Scene(loader.load());
 	     helpStage.setScene(helpScene);
+	     helpStage.setResizable(false);
 	     helpStage.setTitle("Help");
 	     helpStage.show();
      }
