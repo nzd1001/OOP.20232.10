@@ -9,7 +9,7 @@ public class BarsCreator {
     }
     public Bar[] initialize(Region container){
     	int l=data.length;
-    	double unit_w=Math.min(22, (int)(container.getWidth()/l));
+    	double unit_w=Math.min(25, (int)(container.getWidth()/l));
     	double unit_h=((container.getHeight()-40)/50);
         Bar[] bars=new Bar[l];
         for (int i = 0; i < bars.length; i++) {

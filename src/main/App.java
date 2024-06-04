@@ -19,7 +19,6 @@ public class App extends Application {
     Scene scene=new Scene(p);
     primaryStage.setScene(scene);
     primaryStage.setTitle("Visualizer");
-    primaryStage.setResizable(false);
     primaryStage.show();
   }
   public static void main(String[] args) {
