@@ -1,4 +1,5 @@
 package main.com.controllers;
+import main.com.exceptions.*;
 import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import java.util.*;
 public class VisualizerSceneController {
-	@FXML private Button ok_button = new Button();
+	@FXML private Button input_button = new Button();
 	@FXML private TextField input_textfield = new TextField();
     @FXML private Button sort_button=new Button();
     @FXML private BorderPane displaySort=new BorderPane();
@@ -41,24 +42,9 @@ public class VisualizerSceneController {
     public void initialize() throws IOException{
     	mapSort(algo_list[MainMenuController.getSortIndex()]);
     	randomize_button.setOnAction(e->{
-    		data=input.create_random_data();
-    		this.bars=create_bars(data);
+    		input.create_random_data();
+    		this.bars=create_bars();
     	});
-        sort_button.setOnAction(e->{
-            if(bars==null||bars.length==0){
-                input.showMissingDataAlert();
-            }
-            else{
-            	resetBars();
-            	SequentialTransition sortingAnimation=current_sort.sort(bars);
-            	sortingAnimation.rateProperty().bind(speed_slider.valueProperty());
-            	sortingAnimation.play();
-            	/*sort_button.setDisable(true);
-            	sortingAnimation.setOnFinished(ee-> {
-	        		 sort_button.setDisable(false);  // Re-enable button after sorting finishes
-	        	});*/
-            }
-        });
         reset_button.setOnAction(e->resetBars());
         back_button.setOnAction(e->{
             try{
@@ -66,22 +52,50 @@ public class VisualizerSceneController {
             catch(IOException err){
                 System.err.println("Error!");
             }});
-        ok_button.setOnAction(eee->{
-        	String inputText = input_textfield.getText();
-        	data = input.inputData(inputText);
-        	boolean isValidInput=input.getValid();
-        	if(isValidInput) {
-        		this.bars=create_bars(data);}
-        	else {
-        		input.showInvalidInputDataAlert();
-        	}
-        });
+        inputButtonInitialize();
+        sortButtonInitialize();
         speedSliderInitialize();
         choiceBoxInitialize();
     }
     public void resetBars() {
+    	data=input.getData();
 		if (!(data==null||data.length==0)) {
-			this.bars=create_bars(data);}
+			this.bars=create_bars();}
+    }
+    public void inputButtonInitialize() {
+    	input_button.setOnAction(e->{
+        	String inputText = input_textfield.getText();
+        	try {
+        		input.inputData(inputText);
+        		this.bars=create_bars();
+        		}
+        	catch(InvalidInputException err) {
+        		err.showMessage();
+        	}
+        });
+    }
+    public void sortButtonInitialize() {
+    	sort_button.setOnAction(e->{
+    		try { letSort();}
+    		catch(MissingInputException err) {
+    			err.showMessage();
+    		}
+    	});
+    }
+    public void letSort() throws MissingInputException {
+        if(bars==null||bars.length==0){
+            throw new MissingInputException();
+        }
+        else{
+        	resetBars();
+        	SequentialTransition sortingAnimation=current_sort.sort(bars);
+        	sortingAnimation.rateProperty().bind(speed_slider.valueProperty());
+        	sortingAnimation.play();
+        	/*sort_button.setDisable(true);
+        	sortingAnimation.setOnFinished(ee-> {
+        		 sort_button.setDisable(false);  // Re-enable button after sorting finishes
+        	});*/
+        }
     }
     public void speedSliderInitialize() {
     	float default_speed=2; //Bar.getSpeed();
@@ -108,8 +122,8 @@ public class VisualizerSceneController {
 		else if (algo_name=="Bubble Sort") {current_sort=new BubbleSort();}
 		else {current_sort=new QuickSort();}
     }
-    public Bar[] create_bars(int[] intArray) {
-    	BarsCreator collection=new BarsCreator(intArray);
+    public Bar[] create_bars() {
+    	BarsCreator collection=new BarsCreator(input.getData());
         Bar[] bars=collection.initialize(displaySort);
         displaySort.getChildren().clear();
         Group barGroup=new Group();

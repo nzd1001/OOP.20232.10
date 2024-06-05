@@ -1,46 +1,46 @@
 package main.com.handlers;
-
+import main.com.exceptions.*;
 import java.util.Random;
 
 import javafx.scene.control.Alert;
 
 public class DataHandler {
+	private int[] data;
 	private boolean valid;
 	private String[] errorContent=new String[2];
 	public boolean getValid() {
 		return valid;
 	}
-	public int[] inputData(String inputText) {
+	public int[] getData() {
+		return data;
+	}
+	public void inputData(String inputText) throws InvalidInputException{
 		valid=true;
 		//System.out.println(inputText);
 	    String[] inputArray = inputText.split(",");
 	    //System.out.println(inputArray[0]+inputArray[1]+inputArray[2]);
 	    //length = inputArray.length;
-	    int[] intArray = new int[inputArray.length];
+	    data = new int[inputArray.length];
 	    //boolean isValidInput = true;
 	    for (int j = 0; j<inputArray.length; j++) {
 	        try {
 	            String num = inputArray[j].trim(); // Trim leading/trailing whitespace
 	        	//for (int i = 0; i < inputArray.length; i++) {
-	            intArray[j] = Integer.parseInt(num);
-	            if (intArray[j]<1 || intArray[j]>50) {
+	            data[j] = Integer.parseInt(num);
+	            if (data[j]<1 || data[j]>50) {
 	            	valid=false;
-	            	matchError("InvalidValue");
-	            	return null;
+	            	throw new InvalidInputException("Please enter integers that is between 1 and 50.","Your input value is not valid!");
 	            }
 	        }
 	         catch (NumberFormatException e) {
 	            valid = false;
-	            matchError("WrongInputFormat");
-	            return null;
+	            throw new InvalidInputException("Please enter only comma-separated numbers.","The input you provided contains non-numeric characters.");
 	        }
 	    }    
 	    if (inputArray.length>100) {
 	    	valid=false;
-	    	matchError("Overlong");
-	    	return null;
+	    	throw new InvalidInputException("Please enter an array that has length no exceeding 100.","Your array has too many number!");
 	    }
-	    return intArray;
     }
 	public void matchError(String er) {
 		if (er.equals("WrongInputFormat")) {
@@ -56,14 +56,13 @@ public class DataHandler {
 			errorContent[1]="Your array has too many numbers";
 		}
 	}
-	public int[] create_random_data(){
+	public void create_random_data(){
         Random random = new Random();
         int l = random.nextInt(98)+3;
-        int[] data=new int[l];
+        data=new int[l];
         for (int i = 0; i < l; i++) {
             data[i] = random.nextInt(50)+1;
           }
-       return data;
     }
 	public void showMissingDataAlert() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
