@@ -6,16 +6,10 @@ import javafx.scene.control.Alert;
 
 public class DataHandler {
 	private int[] data;
-	private boolean valid;
-	private String[] errorContent=new String[2];
-	public boolean getValid() {
-		return valid;
-	}
 	public int[] getData() {
 		return data;
 	}
 	public void inputData(String inputText) throws InvalidInputException{
-		valid=true;
 		//System.out.println(inputText);
 	    String[] inputArray = inputText.split(",");
 	    //System.out.println(inputArray[0]+inputArray[1]+inputArray[2]);
@@ -28,34 +22,18 @@ public class DataHandler {
 	        	//for (int i = 0; i < inputArray.length; i++) {
 	            data[j] = Integer.parseInt(num);
 	            if (data[j]<1 || data[j]>50) {
-	            	valid=false;
 	            	throw new InvalidInputException("Please enter integers that is between 1 and 50.","Your input value is not valid!");
 	            }
 	        }
 	         catch (NumberFormatException e) {
-	            valid = false;
+	            
 	            throw new InvalidInputException("Please enter only comma-separated numbers.","The input you provided contains non-numeric characters.");
 	        }
 	    }    
 	    if (inputArray.length>100) {
-	    	valid=false;
 	    	throw new InvalidInputException("Please enter an array that has length no exceeding 100.","Your array has too many number!");
 	    }
     }
-	public void matchError(String er) {
-		if (er.equals("WrongInputFormat")) {
-			errorContent[0]="Please enter only comma-separated numbers.";
-			errorContent[1]="The input you provided contains non-numeric characters.";
-		}
-		else if (er.equals("InvalidValue")) {
-			errorContent[0]="Please enter integers that is between 1 and 50";
-			errorContent[1]="Your input value is not valid";
-		}
-		else if (er.equals("Overlong")){
-			errorContent[0]="Please enter an array that has length no exceeding 100";
-			errorContent[1]="Your array has too many numbers";
-		}
-	}
 	public void create_random_data(){
         Random random = new Random();
         int l = random.nextInt(98)+3;
@@ -64,19 +42,4 @@ public class DataHandler {
             data[i] = random.nextInt(50)+1;
           }
     }
-	public void showMissingDataAlert() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Missing Input Data!");
-        alert.setHeaderText("Please Enter Data ");
-        alert.setContentText("You cannot sort without any data. Please enter data or randomize data before sorting.");
-        alert.showAndWait();
-    }   
-	 
-    public void showInvalidInputDataAlert() {
-		Alert alert = new Alert(Alert.AlertType.ERROR);
-		alert.setTitle("Invalid Input");
-		alert.setHeaderText(errorContent[0]);
-		alert.setContentText(errorContent[1]);
-		alert.showAndWait();
-	}
 }

@@ -30,8 +30,6 @@ public class VisualizerSceneController {
     @FXML private Slider speed_slider=new Slider();
     @FXML private Button reset_button=new Button();
     @FXML private ChoiceBox<String> algo_box=new ChoiceBox();
-    private boolean isSorting=false;
-    private static int[] data;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -58,7 +56,7 @@ public class VisualizerSceneController {
         choiceBoxInitialize();
     }
     public void resetBars() {
-    	data=input.getData();
+    	int[] data=input.getData();
 		if (!(data==null||data.length==0)) {
 			this.bars=create_bars();}
     }
@@ -91,10 +89,6 @@ public class VisualizerSceneController {
         	SequentialTransition sortingAnimation=current_sort.sort(bars);
         	sortingAnimation.rateProperty().bind(speed_slider.valueProperty());
         	sortingAnimation.play();
-        	/*sort_button.setDisable(true);
-        	sortingAnimation.setOnFinished(ee-> {
-        		 sort_button.setDisable(false);  // Re-enable button after sorting finishes
-        	});*/
         }
     }
     public void speedSliderInitialize() {
