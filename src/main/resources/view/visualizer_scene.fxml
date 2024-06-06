@@ -55,7 +55,7 @@
       </AnchorPane>
    </bottom>
    <center>
-      <BorderPane fx:id="displaySort" maxHeight="390.0" maxWidth="840.0" prefHeight="266.0" prefWidth="840.0" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="displaySortPane" maxHeight="390.0" maxWidth="840.0" prefHeight="266.0" prefWidth="840.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin></BorderPane>

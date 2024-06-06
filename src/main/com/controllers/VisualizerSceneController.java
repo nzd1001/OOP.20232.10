@@ -24,7 +24,7 @@ public class VisualizerSceneController {
 	@FXML private Button input_button = new Button();
 	@FXML private TextField input_textfield = new TextField();
     @FXML private Button sort_button=new Button();
-    @FXML private BorderPane displaySort=new BorderPane();
+    @FXML private BorderPane displaySortPane=new BorderPane();
     @FXML private Button randomize_button=new Button();
     @FXML private Button back_button=new Button();
     @FXML private Label speed_label=new Label();
@@ -34,9 +34,7 @@ public class VisualizerSceneController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private Bar[] bars;
-    private Sort current_sort;
-    private DataHandler input= new DataHandler();
+    private Visualizer visualizer=new Visualizer(new DataHandler());
     private String[] algo_list= {"Insertion Sort","Bubble Sort","Quick Sort"};
     public void initialize() throws IOException{
     	mapSort(algo_list[MainMenuController.getSortIndex()]);
@@ -49,13 +47,13 @@ public class VisualizerSceneController {
         choiceBoxInitialize();
     }
     public void resetBars() {
-    	int[] data=input.getData();
+    	int[] data=visualizer.getDataHandler().getData();
 		if (!(data==null||data.length==0)) {
-			this.bars=create_bars();}
+			displayBars();}
     }
     public void randomizeButtonHandler() {
-    	input.create_random_data();
-		this.bars=create_bars();
+    	visualizer.getDataHandler().create_random_data();
+		displayBars();
     }
     public void backButtonHandler(ActionEvent e) {
     	try{
@@ -66,8 +64,8 @@ public class VisualizerSceneController {
     public void inputButtonHandler() {
     	String inputText = input_textfield.getText();
     	try {
-    		input.inputData(inputText);
-    		this.bars=create_bars();
+    		visualizer.getDataHandler().inputData(inputText);		
+    		displayBars();
     		}
     	catch(InvalidInputException err) {
     		err.showMessage();
@@ -80,12 +78,12 @@ public class VisualizerSceneController {
 		}
     }
     public void letSort() throws MissingInputException {
-        if(bars==null||bars.length==0){
+        if(visualizer.getBars()==null||visualizer.getBars().length==0){
             throw new MissingInputException();
         }
         else{
         	resetBars();
-        	SequentialTransition sortingAnimation=current_sort.sort(bars);
+        	SequentialTransition sortingAnimation=visualizer.sort();
         	sortingAnimation.rateProperty().bind(speed_slider.valueProperty());
         	sortingAnimation.play();
         }
@@ -111,20 +109,18 @@ public class VisualizerSceneController {
     	});
     }
     public void mapSort(String algo_name) {
-    	if (algo_name=="Insertion Sort") {current_sort=new InsertionSort();}
-		else if (algo_name=="Bubble Sort") {current_sort=new BubbleSort();}
-		else {current_sort=new QuickSort();}
+    	if (algo_name=="Insertion Sort") {visualizer.setAlgo(new InsertionSort());}
+		else if (algo_name=="Bubble Sort") {visualizer.setAlgo(new BubbleSort());}
+		else {visualizer.setAlgo(new QuickSort());}
     }
-    public Bar[] create_bars() {
-    	BarsCreator creator=new BarsCreator(input.getData());
-        Bar[] bars=creator.create(displaySort);
-        displaySort.getChildren().clear();
+    public void displayBars() {
+    	visualizer.create_bars(displaySortPane);
+    	Bar[] bars=visualizer.getBars();
+        displaySortPane.getChildren().clear();
         Group barGroup=new Group();
         barGroup.getChildren().addAll(Arrays.asList(bars));
-        /*displaySort.getChildren().add(barGroup);*/
-        displaySort.setBottom(barGroup);
-        displaySort.setAlignment(barGroup,Pos.CENTER);
-        return bars;
+        displaySortPane.setBottom(barGroup);
+        BorderPane.setAlignment(barGroup,Pos.CENTER); 
     }
     public void switch_scene1(ActionEvent event) throws IOException{
         //FXMLLoader loader1 = new FXMLLoader(getClass().getResource("resources/view/main_menu.fxml")); 

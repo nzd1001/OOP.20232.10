@@ -26,8 +26,7 @@ public class DataHandler {
 	            }
 	        }
 	         catch (NumberFormatException e) {
-	            
-	            throw new InvalidInputException("Please enter only comma-separated numbers.","The input you provided contains non-numeric characters.");
+	            throw new InvalidInputException("Please enter only comma-separated numbers.","The input you provided is in wrong format.");
 	        }
 	    }    
 	    if (inputArray.length>100) {
