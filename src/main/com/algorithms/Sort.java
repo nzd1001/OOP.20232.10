@@ -1,6 +1,10 @@
 package main.com.algorithms;
 import main.com.components.Bar;
+
+import java.util.ArrayList;
+
 import javafx.animation.ParallelTransition;
+import javafx.animation.Transition;
 import javafx.animation.SequentialTransition;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -43,7 +47,7 @@ public abstract class Sort {
         bars[j]=temp;
         return t;
     }
-    public abstract SequentialTransition sort(Bar[] bars);
+    public abstract ArrayList<Transition> sort(Bar[] bars);
 }
 
   

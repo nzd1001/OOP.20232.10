@@ -2,6 +2,7 @@ package main.com.controllers;
 import main.com.exceptions.*;
 import main.com.utilization.*;
 import javafx.animation.SequentialTransition;
+import javafx.animation.Transition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +32,7 @@ public class VisualizerSceneController {
     @FXML private Slider speed_slider=new Slider();
     @FXML private Button reset_button=new Button();
     @FXML private ChoiceBox<String> algo_box=new ChoiceBox();
+    private int current_index=0;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -82,10 +84,13 @@ public class VisualizerSceneController {
             throw new MissingInputException();
         }
         else{
-        	resetBars();
-        	SequentialTransition sortingAnimation=visualizer.sort();
+        	//resetBars();
+        	Transition ani=visualizer.playSort(current_index);
+        	ani.setOnFinished(e->{current_index+=1;});
+        	ani.play();
+        	/*SequentialTransition sortingAnimation=visualizer.sort();
         	sortingAnimation.rateProperty().bind(speed_slider.valueProperty());
-        	sortingAnimation.play();
+        	sortingAnimation.play();*/
         }
     }
     public void speedSliderInitialize() {

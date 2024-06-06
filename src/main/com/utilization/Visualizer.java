@@ -1,14 +1,18 @@
 package main.com.utilization;
+import java.util.ArrayList;
+import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
+import javafx.animation.Transition;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 import main.com.algorithms.*;
 import main.com.components.Bar;
 public class Visualizer {
 	private DataHandler handler;
 	private Sort algo;
 	private Bar[] bars;
-
+	
 	public Visualizer(DataHandler handler) {
 		this.handler=handler;
 	}
@@ -42,9 +46,9 @@ public class Visualizer {
 	        bars[i].setHeight(bar_unit_h*data[i]);
 	      }    
 	 }
-	 public SequentialTransition sort() {
-		 SequentialTransition animation=algo.sort(bars);
-		 return animation;
+	 public Transition playSort(int currentIndex) {
+		ArrayList<Transition> animationList=algo.sort(bars);
+	 	return animationList.get(currentIndex);
 	 }
-	 
 }
+	 
