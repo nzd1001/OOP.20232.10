@@ -1,5 +1,6 @@
 package main.com.controllers;
 import main.com.exceptions.*;
+import main.com.utilization.*;
 import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +15,7 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 import main.com.algorithms.*;
 import main.com.components.*;
-import main.com.handlers.*;
+
 import java.io.IOException;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -39,19 +40,11 @@ public class VisualizerSceneController {
     private String[] algo_list= {"Insertion Sort","Bubble Sort","Quick Sort"};
     public void initialize() throws IOException{
     	mapSort(algo_list[MainMenuController.getSortIndex()]);
-    	randomize_button.setOnAction(e->{
-    		input.create_random_data();
-    		this.bars=create_bars();
-    	});
+    	randomize_button.setOnAction(e->randomizeButtonHandler());
         reset_button.setOnAction(e->resetBars());
-        back_button.setOnAction(e->{
-            try{
-                switch_scene1(e);}
-            catch(IOException err){
-                System.err.println("Error!");
-            }});
-        inputButtonInitialize();
-        sortButtonInitialize();
+        back_button.setOnAction(e->backButtonHandler(e));
+        input_button.setOnAction(e->inputButtonHandler());
+        sort_button.setOnAction(e->sortButtonHandler());
         speedSliderInitialize();
         choiceBoxInitialize();
     }
@@ -60,25 +53,31 @@ public class VisualizerSceneController {
 		if (!(data==null||data.length==0)) {
 			this.bars=create_bars();}
     }
-    public void inputButtonInitialize() {
-    	input_button.setOnAction(e->{
-        	String inputText = input_textfield.getText();
-        	try {
-        		input.inputData(inputText);
-        		this.bars=create_bars();
-        		}
-        	catch(InvalidInputException err) {
-        		err.showMessage();
-        	}
-        });
+    public void randomizeButtonHandler() {
+    	input.create_random_data();
+		this.bars=create_bars();
     }
-    public void sortButtonInitialize() {
-    	sort_button.setOnAction(e->{
-    		try { letSort();}
-    		catch(MissingInputException err) {
-    			err.showMessage();
+    public void backButtonHandler(ActionEvent e) {
+    	try{
+            switch_scene1(e);}
+        catch(IOException err){
+            System.err.println("Error!");}
+    }
+    public void inputButtonHandler() {
+    	String inputText = input_textfield.getText();
+    	try {
+    		input.inputData(inputText);
+    		this.bars=create_bars();
     		}
-    	});
+    	catch(InvalidInputException err) {
+    		err.showMessage();
+    	}   
+    }
+    public void sortButtonHandler() {
+		try { letSort();}
+		catch(MissingInputException err) {
+			err.showMessage();
+		}
     }
     public void letSort() throws MissingInputException {
         if(bars==null||bars.length==0){
@@ -117,8 +116,8 @@ public class VisualizerSceneController {
 		else {current_sort=new QuickSort();}
     }
     public Bar[] create_bars() {
-    	BarsCreator collection=new BarsCreator(input.getData());
-        Bar[] bars=collection.initialize(displaySort);
+    	BarsCreator creator=new BarsCreator(input.getData());
+        Bar[] bars=creator.create(displaySort);
         displaySort.getChildren().clear();
         Group barGroup=new Group();
         barGroup.getChildren().addAll(Arrays.asList(bars));

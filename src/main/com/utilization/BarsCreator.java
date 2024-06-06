@@ -1,13 +1,14 @@
-package main.com.components;
+package main.com.utilization;
 
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import main.com.components.Bar;
 public class BarsCreator {
     private int[] data=new int[100];
     public BarsCreator(int[] data){
         this.data=data;
     }
-    public Bar[] initialize(Region container){
+    public Bar[] create(Region container){
     	int l=data.length;
     	double unit_w=Math.min(25, (int)(container.getWidth()/l));
     	double unit_h=((container.getHeight()-40)/50);
