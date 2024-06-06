@@ -39,7 +39,7 @@
       <AnchorPane prefHeight="51.0" prefWidth="607.0" BorderPane.alignment="CENTER">
          <children>
             <TextField id="input_textfield" fx:id="input_textfield" layoutX="93.0" layoutY="14.0" prefWidth="158.0" style="-fx-border-radius: 10 10 10 10; -fx-background-radius: 10 10 10 10;" />
-            <Button id="ok_button" fx:id="ok_button" layoutX="268.0" layoutY="14.0" mnemonicParsing="false" text="OK" />
+            <Button id="input_button" fx:id="input_button" layoutX="268.0" layoutY="14.0" mnemonicParsing="false" text="OK" />
             <Slider id="speed_slider" fx:id="speed_slider" layoutX="666.0" layoutY="17.0" prefHeight="20.0" prefWidth="187.0" AnchorPane.rightAnchor="146.79999999999995" />
             <Label id="speed_label" fx:id="speed_label" layoutX="866.0" layoutY="15.0" prefHeight="21.0" prefWidth="76.0" text="Speed" AnchorPane.rightAnchor="58.0">
                <font>
@@ -55,7 +55,7 @@
       </AnchorPane>
    </bottom>
    <center>
-      <BorderPane fx:id="displaySort" maxHeight="390.0" maxWidth="840.0" prefHeight="266.0" prefWidth="840.0" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="displaySortPane" maxHeight="390.0" maxWidth="840.0" prefHeight="266.0" prefWidth="840.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin></BorderPane>
