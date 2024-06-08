@@ -29,6 +29,8 @@ public class VisualizerSceneController {
     @FXML private Button back_button=new Button();
     @FXML private Label speed_label=new Label();
     @FXML private Slider speed_slider=new Slider();
+    @FXML private Label num_label=new Label();
+    @FXML private Slider num_slider=new Slider();
     @FXML private Button reset_button=new Button();
     @FXML private ChoiceBox<String> algo_box=new ChoiceBox();
     private Stage stage;
@@ -38,6 +40,7 @@ public class VisualizerSceneController {
     private String[] algo_list= {"Insertion Sort","Bubble Sort","Quick Sort"};
     public void initialize() throws IOException{
     	mapSort(algo_list[MainMenuController.getSortIndex()]);
+        numSliderInitialize();
     	randomize_button.setOnAction(e->randomizeButtonHandler());
         reset_button.setOnAction(e->resetBars());
         back_button.setOnAction(e->backButtonHandler(e));
@@ -51,8 +54,20 @@ public class VisualizerSceneController {
 		if (!(data==null||data.length==0)) {
 			displayBars();}
     }
+    public void numSliderInitialize(){
+        int default_num=50; //Bar.getSpeed();
+    	num_slider.setMin(1);
+        num_slider.setMax(100);
+        num_slider.setValue(default_num);
+        num_slider.setBlockIncrement(10);
+        num_slider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
+        	int current_num = newValue.intValue();
+        	//Bar.setSpeed(current_speed);
+            num_label.setText(String.format("n: %d", current_num));});
+        num_label.setText(String.format("n: %d",default_num));
+    }
     public void randomizeButtonHandler() {
-    	visualizer.getDataHandler().create_random_data();
+    	visualizer.getDataHandler().create_random_data((int)num_slider.getValue());
 		displayBars();
     }
     public void backButtonHandler(ActionEvent e) {
