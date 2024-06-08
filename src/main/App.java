@@ -2,10 +2,7 @@ package main;
 import javafx.application.Application;
 import javafx.fxml.*;
 import javafx.scene.Scene;
-import javafx.scene.Group;
 import javafx.scene.Parent;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
 import javafx.stage.Stage;
 public class App extends Application {
   @Override

@@ -2,8 +2,6 @@ package main.com.utilization;
 import main.com.exceptions.*;
 import java.util.Random;
 
-import javafx.scene.control.Alert;
-
 public class DataHandler {
 	private int[] data;
 	public int[] getData() {
