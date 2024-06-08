@@ -89,9 +89,9 @@ public class VisualizerSceneController {
         }
     }
     public void speedSliderInitialize() {
-    	float default_speed=2; //Bar.getSpeed();
+    	float default_speed=5; //Bar.getSpeed();
     	speed_slider.setMin(0.5);
-        speed_slider.setMax(30.0);
+        speed_slider.setMax(50.0);
         speed_slider.setValue(default_speed);
         speed_slider.setBlockIncrement(0.5);
         speed_slider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
