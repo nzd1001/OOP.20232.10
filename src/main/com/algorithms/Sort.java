@@ -10,13 +10,6 @@ public abstract class Sort {
     final Color PIVOT_COLOR = Color.LIGHTSLATEGRAY;
     final Color SELECT_COLOR = Color.GREENYELLOW;
     final Color SORTED_COLOR = Color.PINK; 
-    ParallelTransition reColor(Bar[] bars,Color[] colors){
-        ParallelTransition t=new ParallelTransition();
-        for (int i=0;i<bars.length;i++){
-            bars[i].changeColor(colors[i]);
-        }
-        return t;
-    }
     ParallelTransition reColor(Color[] colors,Bar... bars){
         ParallelTransition t=new ParallelTransition();
         for (int i=0;i<bars.length;i++){

@@ -16,7 +16,7 @@
             "name": "zero_error",
             "request": "launch",
             "mainClass": "zero_error",
-            "projectName": "OOP20232Project_731f4243"
+            "projectName": "OOP.20232.10"
         },
         {
             "type": "java",
@@ -29,8 +29,9 @@
             "type": "java",
             "name": "App",
             "request": "launch",
-            "mainClass": "App",
-            "projectName": "OOP20232Project_731f4243"
+            "mainClass": "main.App",
+            "projectName": "OOP.20232.GROUP10",
+            "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-22.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }
