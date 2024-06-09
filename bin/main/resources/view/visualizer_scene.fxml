@@ -46,7 +46,7 @@
             <Line endX="-32.80000305175781" endY="-53.0" layoutX="430.0" layoutY="49.0" startX="-32.79998779296875" startY="55.0" />
             <Line endX="-32.79998779296875" endY="-53.0" layoutX="546.0" layoutY="56.0" startX="-32.79998779296875" startY="48.492889404296875" />
             <Line endX="-32.79998779296875" endY="-59.0" layoutX="814.0" layoutY="59.0" startX="-32.79998779296875" startY="45.40000915527344" />
-            <Label fx:id="num_label" layoutX="951.0" layoutY="36.0" prefHeight="18.0" prefWidth="47.0" text="n" />
+            <Label fx:id="num_label" layoutX="951.0" layoutY="36.0" prefHeight="18.0" prefWidth="34.0" text="n" />
          </children>
          <BorderPane.margin>
             <Insets bottom="30.0" />

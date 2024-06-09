@@ -10,7 +10,7 @@ public abstract class Sort {
     final Color KEY_COLOR = Color.ORANGE;
     final Color PIVOT_COLOR = Color.LIGHTSLATEGRAY;
     final Color SELECT_COLOR = Color.GREENYELLOW;
-    final Color SORTED_COLOR = Color.rgb(255,152,0);
+    final Color SORTED_COLOR = Color.rgb(73,130,222);
     ParallelTransition reColor(Color[] colors,Bar... bars){
         ParallelTransition t=new ParallelTransition();
         for (int i=0;i<bars.length;i++){
