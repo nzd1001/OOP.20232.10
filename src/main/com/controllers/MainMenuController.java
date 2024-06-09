@@ -56,9 +56,6 @@ public class MainMenuController {
         root=loader.load();
         stage=(Stage)((Node)event.getSource()).getScene().getWindow();
         scene=new Scene(root);
-        Platform.runLater(() -> { // Run later to ensure proper stage initialization
-            stage.setFullScreen(true);
-        });
         stage.setScene(scene);
         stage.show();
      }
