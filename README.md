@@ -10,4 +10,4 @@ This is a simple sorting visualizer application code by `java` and `javafx.` Her
 ## Members
 + Ngo Duy Dat - 20225480: Group Leader, responsible for the code of both the controller and the view of the application.
 + Pham Dang Tan Dung - 20225569: coding in some parts like handling user input,randomize button, QuickSort, speed adjustment slider; fixing errors, giving the idea to design the program; drawing diagrams; slide and report preparation.
-## Demo video link [here]()
+## Demo video link [here](https://husteduvn-my.sharepoint.com/:v:/g/personal/dat_nd225480_sis_hust_edu_vn/EeNbbgvz7wZKrXb0-5I_PSMBhhaiEimkP3l-73C5M1qt6Q?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=mfUEbc)
