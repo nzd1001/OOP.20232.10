@@ -1,15 +1,16 @@
 package main.com.algorithms;
 import main.com.components.Bar;
+import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 public abstract class Sort {
-    final Color INITIAL_COLOR = Color.CYAN;
+    final Color INITIAL_COLOR = Color.rgb(184,255,255); 
     final Color KEY_COLOR = Color.ORANGE;
     final Color PIVOT_COLOR = Color.LIGHTSLATEGRAY;
     final Color SELECT_COLOR = Color.GREENYELLOW;
-    final Color SORTED_COLOR = Color.PINK; 
+    final Color SORTED_COLOR = Color.rgb(73,130,222);
     ParallelTransition reColor(Color[] colors,Bar... bars){
         ParallelTransition t=new ParallelTransition();
         for (int i=0;i<bars.length;i++){
@@ -36,6 +37,7 @@ public abstract class Sort {
         bars[j]=temp;
         return t;
     }
+    
     public abstract SequentialTransition sort(Bar[] bars);
 }
 

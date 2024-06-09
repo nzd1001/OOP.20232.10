@@ -8,56 +8,74 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.com.controllers.VisualizerSceneController">
+<BorderPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #343638;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.com.controllers.VisualizerSceneController">
    <top>
-      <AnchorPane id="top_bar" fx:id="top_bar" prefHeight="51.0" prefWidth="600.0" style="-fx-background-color: #9ceb34;" BorderPane.alignment="CENTER">
+      <AnchorPane id="top_bar" fx:id="top_bar" prefHeight="87.0" prefWidth="1000.0" style="-fx-background-color: #fcca53;" BorderPane.alignment="CENTER">
          <children>
-            <Button id="back_button" fx:id="back_button" layoutX="32.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Back">
+            <Button id="back_button" fx:id="back_button" layoutX="26.0" layoutY="34.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Back" textFill="#0b0b0b">
                <font>
-                  <Font size="14.0" />
+                  <Font size="16.0" />
                </font></Button>
-            <Button id="sort_button" fx:id="sort_button" layoutX="475.0" layoutY="9.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Sort">
+            <Button id="sort_button" fx:id="sort_button" layoutX="320.0" layoutY="33.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Sort">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <ChoiceBox fx:id="algo_box" layoutX="98.0" layoutY="13.0" prefWidth="150.0" />
-            <Button id="randomize_button" fx:id="randomize_button" layoutX="272.0" layoutY="13.0" mnemonicParsing="false" text="Randomize">
+            <ChoiceBox fx:id="algo_box" layoutX="137.0" layoutY="35.0" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: none; -fx-border-color: black;" />
+            <Button id="randomize_button" fx:id="randomize_button" layoutX="832.0" layoutY="64.0" mnemonicParsing="false" text="Randomize">
                <font>
                   <Font size="13.0" />
                </font></Button>
-            <Button id="reset_button" fx:id="reset_button" layoutX="382.0" layoutY="13.0" mnemonicParsing="false" text="Reset">
+            <Button id="reset_button" fx:id="reset_button" layoutX="423.0" layoutY="34.0" mnemonicParsing="false" style="-fx-background-color: none;" text="Reset">
                <font>
-                  <Font size="13.0" />
+                  <Font size="16.0" />
                </font></Button>
+            <Slider fx:id="num_slider" layoutX="803.0" layoutY="38.0" />
+            <TextField id="input_textfield" fx:id="input_textfield" layoutX="571.0" layoutY="30.0" prefWidth="158.0" style="-fx-border-radius: 10 10 10 10; -fx-background-radius: 10 10 10 10;" />
+            <Button id="input_button" fx:id="input_button" layoutX="634.0" layoutY="65.0" mnemonicParsing="false" text="OK" />
+            <Label layoutX="609.0" layoutY="4.0" text="Your input">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Line endX="-32.80000305175781" endY="-53.0" layoutX="135.0" layoutY="53.0" startX="-32.80000305175781" startY="52.0" AnchorPane.topAnchor="-0.7071075439453125" />
+            <Line endX="-32.80000305175781" endY="-53.0" layoutX="324.0" layoutY="52.0" startX="-32.79998779296875" startY="52.0" />
+            <Line endX="-32.80000305175781" endY="-53.0" layoutX="430.0" layoutY="49.0" startX="-32.79998779296875" startY="55.0" />
+            <Line endX="-32.79998779296875" endY="-53.0" layoutX="546.0" layoutY="56.0" startX="-32.79998779296875" startY="48.492889404296875" />
+            <Line endX="-32.79998779296875" endY="-59.0" layoutX="814.0" layoutY="59.0" startX="-32.79998779296875" startY="45.40000915527344" />
+            <Label fx:id="num_label" layoutX="951.0" layoutY="36.0" prefHeight="18.0" prefWidth="34.0" text="n" />
          </children>
+         <BorderPane.margin>
+            <Insets bottom="30.0" />
+         </BorderPane.margin>
       </AnchorPane>
    </top>
    <bottom>
-      <AnchorPane prefHeight="51.0" prefWidth="607.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextField id="input_textfield" fx:id="input_textfield" layoutX="93.0" layoutY="14.0" prefWidth="158.0" style="-fx-border-radius: 10 10 10 10; -fx-background-radius: 10 10 10 10;" />
-            <Button id="input_button" fx:id="input_button" layoutX="268.0" layoutY="14.0" mnemonicParsing="false" text="OK" />
-            <Slider id="speed_slider" fx:id="speed_slider" layoutX="666.0" layoutY="17.0" prefHeight="20.0" prefWidth="187.0" AnchorPane.rightAnchor="146.79999999999995" />
-            <Label id="speed_label" fx:id="speed_label" layoutX="866.0" layoutY="15.0" prefHeight="21.0" prefWidth="76.0" text="Speed" AnchorPane.rightAnchor="58.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="14.0" layoutY="17.0" text="Your input">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
+      <BorderPane prefHeight="70.0" prefWidth="1000.0" style="-fx-background-color: #343638;" BorderPane.alignment="CENTER">
+         <center>
+            <AnchorPane maxHeight="50.0" maxWidth="500.0" prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: #343638;" BorderPane.alignment="CENTER">
+               <children>
+                  <Slider id="speed_slider" fx:id="speed_slider" layoutX="20.0" layoutY="-3.0" prefHeight="34.0" prefWidth="394.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="80.0" />
+                  <Label id="speed_label" fx:id="speed_label" layoutX="224.0" layoutY="3.0" prefHeight="21.0" prefWidth="76.0" text="Speed" textFill="#f7f3f3" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </center>
+         <BorderPane.margin>
+            <Insets top="20.0" />
+         </BorderPane.margin>
+      </BorderPane>
    </bottom>
    <center>
-      <BorderPane fx:id="displaySortPane" maxHeight="390.0" maxWidth="840.0" prefHeight="266.0" prefWidth="840.0" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="displaySortPane" maxHeight="500.0" maxWidth="1200.0" prefHeight="400.0" prefWidth="940.0" style="-fx-background-color: #424242; -fx-border-radius: 30 30 30 30; -fx-background-radius: 30 30 30 30; -fx-border-color: white; -fx-border-width: 3;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets />
+            <Insets bottom="20.0" left="40.0" right="40.0" top="30.0" />
          </BorderPane.margin></BorderPane>
    </center>
 </BorderPane>

@@ -39,26 +39,32 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.com.controllers.MainMenuController">
+<BorderPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #424242; -fx-border-color: #fcca53; -fx-border-width: 8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.com.controllers.MainMenuController">
    <center>
-      <AnchorPane maxHeight="340.0" maxWidth="500.0" prefHeight="340.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="359.0" maxWidth="500.0" prefHeight="359.0" prefWidth="603.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="84.0" layoutY="156.0" style="&#10;" text="Choose your algorithm: " textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+            <Label alignment="CENTER" layoutX="163.0" layoutY="140.0" style="&#10;" text="Choose your algorithm: " textAlignment="CENTER" textFill="WHITE" wrapText="false">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <ChoiceBox id="algo_choice_box" fx:id="algo_choice_box" layoutX="284.0" layoutY="157.0" prefWidth="150.0" />
-            <Button id="start-button" fx:id="start_button" layoutX="219.0" layoutY="198.0" mnemonicParsing="false" text="Start">
+            <ChoiceBox id="algo_choice_box" fx:id="algo_choice_box" layoutX="170.0" layoutY="180.0" prefHeight="30.0" prefWidth="178.0" style="-fx-background-color: #faeea0;" />
+            <Button id="start-button" fx:id="start_button" layoutX="188.0" layoutY="243.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="142.0" style="-fx-background-color: none;" text="Start" textFill="#fcca53">
                <font>
-                  <Font size="20.0" />
+                  <Font size="28.0" />
                </font>
             </Button>
-            <Button id="help-button" fx:id="help_button" layoutX="209.0" layoutY="254.0" mnemonicParsing="false" text="Help" />
-            <Button id="quit-button" fx:id="quit_button" layoutX="255.0" layoutY="254.0" mnemonicParsing="false" text="Quit" />
-            <Label fx:id="title" layoutX="92.0" layoutY="62.0" text="Sorting Algo Visualizer">
+            <Button id="help-button" fx:id="help_button" layoutX="195.0" layoutY="308.0" mnemonicParsing="false" style="-fx-background-color: none;" text="Help" textFill="#fcca53">
                <font>
-                  <Font name="Comic Sans MS" size="30.0" />
+                  <Font size="16.0" />
+               </font></Button>
+            <Button id="quit-button" fx:id="quit_button" layoutX="269.0" layoutY="308.0" mnemonicParsing="false" style="-fx-background-color: none;" text="Quit" textFill="#fcca53">
+               <font>
+                  <Font size="16.0" />
+               </font></Button>
+            <Label fx:id="title" layoutX="10.0" prefHeight="91.0" prefWidth="498.0" text="Sorting Algo Visualizer" textFill="#fcca53">
+               <font>
+                  <Font name="Comic Sans MS" size="45.0" />
                </font>
             </Label>
          </children>

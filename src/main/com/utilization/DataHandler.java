@@ -31,11 +31,10 @@ public class DataHandler {
 	    	throw new InvalidInputException("Please enter an array that has length no exceeding 100.","Your array has too many number!");
 	    }
     }
-	public void create_random_data(){
+	public void create_random_data(int n){
+		data=new int[n];
         Random random = new Random();
-        int l = random.nextInt(98)+3;
-        data=new int[l];
-        for (int i = 0; i < l; i++) {
+        for (int i = 0; i < n; i++) {
             data[i] = random.nextInt(50)+1;
           }
     }

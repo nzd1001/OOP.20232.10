@@ -1,5 +1,7 @@
 package main.com.controllers;
 import java.io.IOException;
+
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,12 +52,16 @@ public class MainMenuController {
         });
     }
      public void switch_scene2(ActionEvent event) throws IOException{
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/view/visualizer_scene.fxml")); 
-         root=loader.load();
-         stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-         scene=new Scene(root);
-         stage.setScene(scene);
-         stage.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/view/visualizer_scene.fxml")); 
+        root=loader.load();
+        stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        scene=new Scene(root);
+        /*Platform.runLater(() -> { // Run later to ensure proper stage initialization
+            stage.setFullScreen(true);
+        });*/
+        stage.setFullScreen(true);
+        stage.setScene(scene);
+        stage.show();
      }
      private void confirmQuit(ActionEvent event) {
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
