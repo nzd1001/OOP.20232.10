@@ -48,11 +48,18 @@ public class VisualizerSceneController {
         sort_button.setOnAction(e->sortButtonHandler());
         speedSliderInitialize();
         choiceBoxInitialize();
+        paneResize();
+    }
+    public void paneResize(){
+        displaySortPane.widthProperty().addListener((observable,oldValue,newValue)->{
+            displayBars();
+        });
+        displaySortPane.heightProperty().addListener((observable,oldValue,newValue)->{
+            displayBars();
+        });
     }
     public void resetBars() {
-    	int[] data=visualizer.getDataHandler().getData();
-		if (!(data==null||data.length==0)) {
-			displayBars();}
+			displayBars();
     }
     public void numSliderInitialize(){
         int default_num=50; //Bar.getSpeed();
@@ -129,13 +136,15 @@ public class VisualizerSceneController {
 		else {visualizer.setAlgo(new QuickSort());}
     }
     public void displayBars() {
-    	visualizer.create_bars(displaySortPane);
-    	Bar[] bars=visualizer.getBars();
-        displaySortPane.getChildren().clear();
-        Group barGroup=new Group();
-        barGroup.getChildren().addAll(Arrays.asList(bars));
-        displaySortPane.setBottom(barGroup);
-        BorderPane.setAlignment(barGroup,Pos.CENTER); 
+        int[] data=visualizer.getDataHandler().getData();
+		if (!(data==null||data.length==0)) {
+            visualizer.create_bars(displaySortPane);
+            Bar[] bars=visualizer.getBars();
+            displaySortPane.getChildren().clear();
+            Group barGroup=new Group();
+            barGroup.getChildren().addAll(Arrays.asList(bars));
+            displaySortPane.setBottom(barGroup);
+            BorderPane.setAlignment(barGroup,Pos.CENTER); }
     }
     public void switch_scene1(ActionEvent event) throws IOException{
         //FXMLLoader loader1 = new FXMLLoader(getClass().getResource("resources/view/main_menu.fxml")); 
